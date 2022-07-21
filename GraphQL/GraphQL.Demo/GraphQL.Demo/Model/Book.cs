@@ -1,4 +1,7 @@
-﻿namespace GraphQL.Demo.Model;
+﻿using HotChocolate;
+using HotChocolate.Types;
+
+namespace GraphQL.Demo.Model;
 
 public class Book
 {
@@ -7,7 +10,15 @@ public class Book
     public Author Author { get; set; }
 }
 
+[GraphQLName("BookAuthor")]
 public class Author
 {
+    [GraphQLName("fullName")]
     public string Name { get; set; }
+}
+
+public class Product
+{
+    [GraphQLType(typeof(IdType))]
+    public int Id { get; set; }
 }
