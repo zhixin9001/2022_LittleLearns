@@ -13,6 +13,7 @@ public class Superpower
     public string Description { get; set; }
 
     [ForeignKey("SuperheroId")]
-    public Guid SuperheroId { get; set; }
+    public Guid SuperheroId { get; seaaaaaaaaaaaaaaaaaaa
+        t; }
     public Superhero Superhero { get; set; }
 }

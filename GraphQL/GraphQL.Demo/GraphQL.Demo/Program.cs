@@ -14,9 +14,11 @@ builder.Services.AddScoped<ISuperheroRepository, SuperheroRepository>();
 builder.Services.AddScoped<ISuperpowerRepository, SuperpowerRepository>();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services
-    .AddGraphQLServer().AddQueryType<Query>().AddProjections().AddFiltering().AddSorting()
+    .AddGraphQLServer()
+    .AddQueryType<Query>().AddProjections().AddFiltering().AddSorting()
     .AddMutationType<Mutation>()
-    .AddSubscriptionType<Subscription>();;
+    .AddSubscriptionType<Subscription>();
+    // .InitializeOnStartup();
 builder.Services.AddInMemorySubscriptions();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
