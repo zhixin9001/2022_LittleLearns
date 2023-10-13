@@ -1,8 +1,7 @@
-// See https://aka.ms/new-console-template for more information
-
 using TaskDemo;
 
-JobScheduler.Current=new DedicatedThreadJobScheduler(1);
+#region Job1
+JobScheduler.Current = new DedicatedThreadJobScheduler(1);
 // Job.Run(() => Console.WriteLine($"Job1, thread:{Thread.CurrentThread.ManagedThreadId}"));
 // Job.Run(() => Console.WriteLine($"Job2, thread:{Thread.CurrentThread.ManagedThreadId}"));
 // Job.Run(() => Console.WriteLine($"Job3, thread:{Thread.CurrentThread.ManagedThreadId}"));
@@ -10,14 +9,70 @@ JobScheduler.Current=new DedicatedThreadJobScheduler(1);
 // Job.Run(() => Console.WriteLine($"Job5, thread:{Thread.CurrentThread.ManagedThreadId}"));
 // Job.Run(() => Console.WriteLine($"Job6, thread:{Thread.CurrentThread.ManagedThreadId}"));
 
-Job.Run(()=>{
+// Job.Run(() =>
+// {
+//     Thread.Sleep(1000);
+//     Console.WriteLine($"11 {Thread.CurrentThread.ManagedThreadId}");
+// }).ContinueWith(_ =>
+// {
+//     Thread.Sleep(1000);
+//     Console.WriteLine("12");
+// }).ContinueWith(_ =>
+// {
+//     Thread.Sleep(1000);
+//     Console.WriteLine("13");
+// });
+// Job.Run(() =>
+// {
+//     Thread.Sleep(1000);
+//     Console.WriteLine($"21 {Thread.CurrentThread.ManagedThreadId}");
+// }).ContinueWith(_ =>
+// {
+//     Thread.Sleep(1000);
+//     Console.WriteLine("22");
+// }).ContinueWith(_ =>
+// {
+//     Thread.Sleep(1000);
+//     Console.WriteLine("23");
+// });
+// Job.Run(() =>
+// {
+//     Thread.Sleep(1000);
+//     Console.WriteLine("31");
+// }).ContinueWith(_ =>
+// {
+//     Thread.Sleep(1000);
+//     Console.WriteLine("32");
+// }).ContinueWith(_ =>
+// {
+//     Thread.Sleep(1000);
+//     Console.WriteLine("33");
+// });
+// Console.WriteLine("Hello, World!");
+
+#endregion
+
+// LongRunningDemo.Run();
+
+
+await F1();
+await F2();
+await F3();
+
+static Job F1() => new Job(() =>
+{
     Thread.Sleep(1000);
-    Console.WriteLine("11");
-}).ContinueWith(_=>{
-    Thread.Sleep(1000);
-    Console.WriteLine("12");    
-}).ContinueWith(_=>{
-    Thread.Sleep(1000);
-    Console.WriteLine("13");    
+    Console.WriteLine("F1");
 });
-Console.WriteLine("Hello, World!");
+
+static Job F2() => new Job(() =>
+{
+    Thread.Sleep(1000);
+    Console.WriteLine("F2");
+});
+
+static Job F3() => new Job(() =>
+{
+    Thread.Sleep(1000);
+    Console.WriteLine("F3");
+});
