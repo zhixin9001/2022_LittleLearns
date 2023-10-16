@@ -14,13 +14,17 @@ public class LongRunningDemo
     {
         // Simulate a long-running operation
         Console.WriteLine("Long-running task started on thread {0}.", Thread.CurrentThread.ManagedThreadId);
-        Thread.Sleep(10000);
+        Thread.Sleep(2000);
         Console.WriteLine("Long-running task finished on thread {0}.", Thread.CurrentThread.ManagedThreadId);
     }
 
     static void NormalMethod()
     {
         // Simulate a normal operation
+        Console.WriteLine("Normal task started on thread {0}.", Thread.CurrentThread.ManagedThreadId);
+        Thread.Sleep(1000);
+        Console.WriteLine("Normal task finished on thread {0}.", Thread.CurrentThread.ManagedThreadId);
+        Thread.Sleep(1000);
         Console.WriteLine("Normal task started on thread {0}.", Thread.CurrentThread.ManagedThreadId);
         Thread.Sleep(1000);
         Console.WriteLine("Normal task finished on thread {0}.", Thread.CurrentThread.ManagedThreadId);
