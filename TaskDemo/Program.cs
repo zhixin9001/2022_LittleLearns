@@ -78,13 +78,14 @@ using TaskDemo;
 // });
 
 
-await Task.Run(() => Console.WriteLine($"Task1, thread:{Thread.CurrentThread.ManagedThreadId}"));
+// await Task.Run(() => Console.WriteLine($"Task1, thread:{Thread.CurrentThread.ManagedThreadId}"));
 // await Task.Run(() => Console.WriteLine($"Task2, thread:{Thread.CurrentThread.ManagedThreadId}"));
 // await Task.Run(() => Console.WriteLine($"Task3, thread:{Thread.CurrentThread.ManagedThreadId}"));
 // await Task.Run(() => Console.WriteLine($"Task4, thread:{Thread.CurrentThread.ManagedThreadId}"));
 
-await TaskA().ContinueWith(_ => Console.WriteLine($"Task3, thread:{Thread.CurrentThread.ManagedThreadId}"))
-.ContinueWith(_ => Console.WriteLine($"Task4, thread:{Thread.CurrentThread.ManagedThreadId}"));
+// await TaskA()
+// .ContinueWith(_ => Console.WriteLine($"Task3, thread:{Thread.CurrentThread.ManagedThreadId}"))
+// .ContinueWith(_ => Console.WriteLine($"Task4, thread:{Thread.CurrentThread.ManagedThreadId}"));
 // TaskA();
 // Console.WriteLine("3");
 
@@ -94,3 +95,7 @@ static async Task TaskA()
         await Task.Delay(1);
         Console.WriteLine($"Task2, thread:{Thread.CurrentThread.ManagedThreadId}");
 }
+
+var taskA = Task.Run(() => DateTime.Now);
+var taskB = taskA.ContinueWith(time => Console.WriteLine(time.Result));
+await taskB;
